@@ -10,7 +10,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var client *mongo.Client
+var Client *mongo.Client
 
 func DatabaseInitialize() {
 	var err error
@@ -20,12 +20,12 @@ func DatabaseInitialize() {
 	}
 
 	clientoptions := options.Client().ApplyURI(uri)
-	client, err = mongo.Connect(context.TODO(), clientoptions)
+	Client, err = mongo.Connect(context.TODO(), clientoptions)
 	if err != nil {
 		log.Fatal("Error connecting to MongoDB:", err)
 	}
 
-	err = client.Ping(context.TODO(), nil)
+	err = Client.Ping(context.TODO(), nil)
 	if err != nil {
 		log.Fatal("Error verifying MongoDB connection:", err)
 	}

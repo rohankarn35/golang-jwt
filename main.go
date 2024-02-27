@@ -1,6 +1,7 @@
 package main
 
 import (
+	"auth/controllers"
 	"auth/initializers"
 
 	"github.com/gin-gonic/gin"
@@ -14,10 +15,7 @@ func init() {
 func main() {
 
 	r := gin.Default()
-	r.GET("/ping", func(ctx *gin.Context) {
-		ctx.JSON(200, gin.H{
-			"MESSAGE": "SUCCESSF",
-		})
-	})
+	r.POST("/signup", controllers.SignUp)
+	r.POST("/login", controllers.Login)
 	r.Run()
 }
