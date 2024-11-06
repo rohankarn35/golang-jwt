@@ -36,6 +36,17 @@ This project demonstrates how to build a secure authentication system in a Golan
     go mod tidy
     ```
 
+3. **Create a `.env` file with the following fields:**
+    ```env
+    REDIS_ADDR=<redis address>
+    REDIS_PASSWORD=           # Leave empty if Redis has no password
+    REDIS_DB=0                # Redis database number (default is 0)
+
+    MONGODB_URI=mongodb+srv://<name>:<password>@cluster0.a4ecxsw.mongodb.net/?retryWrites=true&w=majority&appName=<clustername>
+
+    JWTSECRET= your-secret-key
+    ```
+
 ## 🚀 Usage
 
 1. **Run the application:**
