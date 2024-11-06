@@ -11,18 +11,28 @@ import (
 )
 
 func main() {
-	config.InitConfig()
+	for {
+		func() {
+			defer func() {
+				if r := recover(); r != nil {
+					log.Printf("Recovered from panic: %v", r)
+				}
+			}()
 
-	utils.Init()
+			config.InitConfig()
 
-	repositories.Init()
+			utils.Init()
 
-	router := gin.Default()
+			repositories.Init()
 
-	routes.SetupRoutes(router)
-	port := "8080"
-	if err := router.Run(":" + port); err != nil {
-		log.Fatalf("Failed to start server: %v", err)
+			router := gin.Default()
+
+			routes.SetupRoutes(router)
+			port := "8080"
+			if err := router.Run(":" + port); err != nil {
+				log.Fatalf("Failed to start server: %v", err)
+			}
+		}()
 	}
 
 }

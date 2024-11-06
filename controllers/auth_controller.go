@@ -55,7 +55,7 @@ func Login(c *gin.Context) {
 
 	// Set role-based access cookies
 
-	c.JSON(http.StatusOK, gin.H{"message": "Loggined Successfully"})
+	c.JSON(http.StatusOK, gin.H{"token": accessToken, "email": user.Email, "role": user.Roles})
 
 }
 
