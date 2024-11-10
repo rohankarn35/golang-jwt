@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt"
-	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -17,10 +16,6 @@ var (
 )
 
 func Init() {
-	err := godotenv.Load()
-	if err != nil {
-		panic("Error loading .env file")
-	}
 
 	jwtSecret = os.Getenv("JWTSECRET")
 	if jwtSecret == "" {

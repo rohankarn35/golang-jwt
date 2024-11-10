@@ -7,7 +7,6 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/joho/godotenv"
 	"github.com/redis/go-redis/v9"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -20,10 +19,7 @@ var (
 )
 
 func InitConfig() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Println("Error loading .env file")
-	}
+
 	initMongoDb()
 	initRedis()
 
@@ -31,6 +27,7 @@ func InitConfig() {
 
 func initMongoDb() {
 	mongoUri := os.Getenv("MONGODB_URI")
+	fmt.Print("loaded mongouri ", mongoUri)
 	clientOptions := options.Client().ApplyURI(mongoUri)
 	var err error
 	MongoDb, err = mongo.Connect(Ctx, clientOptions)
@@ -48,6 +45,8 @@ func initRedis() {
 	redisAddr := os.Getenv("REDIS_ADDR")
 	redisPassword := os.Getenv("REDIS_PASSWORD")
 	redisDB, err := strconv.Atoi(os.Getenv("REDIS_DB"))
+	fmt.Print("connection error")
+
 	if err != nil {
 		log.Fatal("Invalid REDIS_DB value:", err)
 	}
